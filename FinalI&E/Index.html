@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KrishiSetu</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#f6fbf5;
+      color:#0b4d1f;
+      overflow-x:hidden;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      width:100%;
+      height:85px;
+      background:white;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 80px;
+      box-shadow:0 2px 15px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:2rem;
+      font-weight:bold;
+      color:#0a7f2e;
+    }
+
+    .logo i{
+      color:#19c657;
+    }
+
+    .nav-links{
+      display:flex;
+      list-style:none;
+      gap:45px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:#0b4d1f;
+      font-size:1rem;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:#19c657;
+    }
+
+    .nav-btn{
+      padding:14px 28px;
+      border:none;
+      border-radius:14px;
+      background:#19c657;
+      color:white;
+      font-size:1rem;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .nav-btn:hover{
+      transform:translateY(-3px);
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:150px 8% 80px;
+      background:linear-gradient(to bottom right,#effff1,#dcffe8);
+    }
+
+    .hero-container{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+      width:100%;
+      max-width:1400px;
+    }
+
+    .hero-text h1{
+      font-size:5rem;
+      line-height:1.1;
+      margin-bottom:25px;
+      color:#083d17;
+    }
+
+    .hero-text h1 span{
+      color:#18c654;
+    }
+
+    .hero-text p{
+      font-size:1.3rem;
+      line-height:1.8;
+      color:#42664f;
+      margin-bottom:40px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .primary-btn{
+      padding:18px 34px;
+      border:none;
+      border-radius:16px;
+      background:#18c654;
+      color:white;
+      font-size:1rem;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 12px 25px rgba(24,198,84,0.25);
+    }
+
+    .secondary-btn{
+      padding:18px 34px;
+      border:none;
+      border-radius:16px;
+      background:white;
+      border:2px solid #d7f5df;
+      color:#0b4d1f;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .primary-btn:hover,
+    .secondary-btn:hover{
+      transform:translateY(-4px);
+    }
+
+    /* DASHBOARD MOCKUP */
+
+    .dashboard-preview{
+      background:#edf5ed;
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid #dce7dc;
+      box-shadow:0 25px 60px rgba(0,0,0,0.08);
+    }
+
+    .dashboard-topbar{
+      height:52px;
+      background:#f7f7f7;
+      display:flex;
+      align-items:center;
+      padding:0 20px;
+      justify-content:space-between;
+      border-bottom:1px solid #dde7dd;
+    }
+
+    .dots{
+      display:flex;
+      gap:8px;
+    }
+
+    .dots span{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+    }
+
+    .red{background:#ff5f56;}
+    .yellow{background:#ffbd2e;}
+    .green{background:#27c93f;}
+
+    .top-url{
+      color:#3a6b49;
+      font-size:0.95rem;
+    }
+
+    .dashboard-body{
+      display:grid;
+      grid-template-columns:220px 1fr;
+      min-height:520px;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar{
+      background:#ffffffcc;
+      padding:25px 18px;
+      border-right:1px solid #dde8dd;
+    }
+
+    .menu{
+      list-style:none;
+    }
+
+    .menu li{
+      display:flex;
+      align-items:center;
+      gap:15px;
+      padding:18px 18px;
+      border-radius:16px;
+      margin-bottom:10px;
+      color:#205534;
+      cursor:pointer;
+      transition:0.3s;
+      font-size:1.05rem;
+    }
+
+    .menu li.active{
+      background:#e8f4e8;
+      color:#008a2e;
+      font-weight:bold;
+    }
+
+    .menu li:hover{
+      background:#eef8ef;
+    }
+
+    /* CONTENT */
+
+    .content{
+      padding:28px;
+    }
+
+    .top-cards{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-bottom:20px;
+    }
+
+    .mini-card{
+      background:white;
+      border-radius:18px;
+      padding:20px;
+      border:1px solid #dbe9db;
+    }
+
+    .mini-card h4{
+      color:#376248;
+      margin-bottom:10px;
+      font-size:1rem;
+      font-weight:500;
+    }
+
+    .mini-card .big{
+      font-size:2.3rem;
+      font-weight:bold;
+      margin-bottom:6px;
+    }
+
+    .green-text{
+      color:#08a53d;
+    }
+
+    .blue-text{
+      color:#0f56ff;
+    }
+
+    .orange-text{
+      color:#ff8b00;
+    }
+
+    .small{
+      font-size:0.95rem;
+      color:#487257;
+    }
+
+    .charts{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .chart-box{
+      background:white;
+      border-radius:22px;
+      padding:25px;
+      border:1px solid #dbe9db;
+    }
+
+    .chart-title{
+      font-size:1.5rem;
+      margin-bottom:25px;
+      color:#083d17;
+      font-weight:bold;
+    }
+
+    .bar-row{
+      display:flex;
+      align-items:center;
+      gap:15px;
+      margin-bottom:18px;
+    }
+
+    .bar{
+      flex:1;
+      height:14px;
+      background:#e7efe7;
+      border-radius:30px;
+      overflow:hidden;
+    }
+
+    .fill{
+      height:100%;
+      border-radius:30px;
+    }
+
+    .fill1{width:70%; background:#21c45a;}
+    .fill2{width:55%; background:#21c45a;}
+    .fill3{width:88%; background:#f5a000;}
+    .fill4{width:60%; background:#21c45a;}
+    .fill5{width:45%; background:#3a7cff;}
+
+    .growth-bars{
+      display:flex;
+      align-items:flex-end;
+      gap:10px;
+      height:170px;
+      margin-top:20px;
+    }
+
+    .growth-bars span{
+      width:42px;
+      background:#1dac4a;
+      border-radius:6px 6px 0 0;
+    }
+
+    .growth-bars span:nth-child(1){height:25px; background:#bcefc7;}
+    .growth-bars span:nth-child(2){height:35px; background:#9de2b0;}
+    .growth-bars span:nth-child(3){height:32px; background:#98dfaa;}
+    .growth-bars span:nth-child(4){height:80px;}
+    .growth-bars span:nth-child(5){height:75px; background:#9de2b0;}
+    .growth-bars span:nth-child(6){height:110px;}
+    .growth-bars span:nth-child(7){height:135px;}
+    .growth-bars span:nth-child(8){height:150px;}
+
+    /* FEATURES */
+
+    .features{
+      padding:120px 8%;
+      background:#f6fff7;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h2{
+      font-size:3rem;
+      margin-bottom:20px;
+      color:#083d17;
+    }
+
+    .section-title p{
+      color:#4d745a;
+      font-size:1.2rem;
+    }
+
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:35px;
+    }
+
+    .feature-card{
+      background:white;
+      border-radius:28px;
+      padding:40px;
+      border:1px solid #dcecdc;
+      transition:0.3s;
+    }
+
+    .feature-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 18px 40px rgba(0,0,0,0.06);
+    }
+
+    .feature-icon{
+      width:80px;
+      height:80px;
+      border-radius:20px;
+      background:#eaffef;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:2rem;
+      color:#18c654;
+      margin-bottom:25px;
+    }
+
+    .feature-card h3{
+      font-size:1.7rem;
+      margin-bottom:15px;
+    }
+
+    .feature-card p{
+      color:#527060;
+      line-height:1.8;
+      font-size:1.05rem;
+    }
+
+    /* TESTIMONIAL */
+
+    .testimonial{
+      padding:120px 8%;
+      background:#eef6ee;
+      text-align:center;
+    }
+
+    .testimonial h5{
+      color:#08a53d;
+      letter-spacing:2px;
+      margin-bottom:25px;
+      font-size:1rem;
+    }
+
+    .testimonial h2{
+      font-size:4rem;
+      margin-bottom:30px;
+      color:#083d17;
+    }
+
+    .testimonial p{
+      font-size:1.5rem;
+      color:#476e55;
+      max-width:900px;
+      margin:auto;
+      line-height:1.7;
+    }
+
+    .reviews{
+      margin-top:70px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+    }
+
+    .review-card{
+      background:white;
+      border-radius:28px;
+      padding:40px;
+      text-align:left;
+      border:1px solid #dde8dd;
+    }
+
+    .stars{
+      color:#11b84a;
+      margin-bottom:20px;
+      font-size:1.1rem;
+    }
+
+    .review-card p{
+      font-size:1.2rem;
+      line-height:1.8;
+    }
+
+    /* CTA */
+
+    .cta{
+      padding:120px 8%;
+      background:linear-gradient(to right,#05571d,#0c7f2d);
+      text-align:center;
+      color:white;
+    }
+
+    .cta h2{
+      font-size:4.5rem;
+      margin-bottom:30px;
+    }
+
+    .cta p{
+      font-size:1.7rem;
+      max-width:900px;
+      margin:auto;
+      line-height:1.8;
+      color:#d7ffe4;
+    }
+
+    .cta button{
+      margin-top:45px;
+      padding:20px 45px;
+      border:none;
+      border-radius:18px;
+      background:transparent;
+      border:2px solid rgba(255,255,255,0.4);
+      color:white;
+      font-size:1.3rem;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .cta button:hover{
+      background:white;
+      color:#0b4d1f;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:white;
+      padding:40px;
+      text-align:center;
+      color:#547262;
+    }
+
+    footer h2{
+      color:#0a7f2e;
+      margin-bottom:12px;
+    }
+
+    /* AUTH MODAL */
+
+    .auth-overlay{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.6);
+      backdrop-filter:blur(6px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      opacity:0;
+      pointer-events:none;
+      transition:0.3s;
+    }
+
+    .auth-overlay.active{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .auth-box{
+      background:white;
+      border-radius:28px;
+      padding:45px;
+      width:90%;
+      max-width:420px;
+      box-shadow:0 25px 60px rgba(0,0,0,0.2);
+      transform:translateY(30px);
+      transition:0.4s;
+    }
+
+    .auth-overlay.active .auth-box{
+      transform:translateY(0);
+    }
+
+    .auth-box h2{
+      font-size:2rem;
+      color:#083d17;
+      margin-bottom:8px;
+    }
+
+    .auth-box p.subtitle{
+      color:#6b8f7a;
+      margin-bottom:30px;
+      font-size:0.95rem;
+    }
+
+    .auth-box .input-group{
+      margin-bottom:18px;
+    }
+
+    .auth-box label{
+      display:block;
+      margin-bottom:6px;
+      color:#2d5a3d;
+      font-weight:600;
+      font-size:0.9rem;
+    }
+
+    .auth-box input[type="text"],
+    .auth-box input[type="email"],
+    .auth-box input[type="password"]{
+      width:100%;
+      padding:14px 16px;
+      border:2px solid #dce8dc;
+      border-radius:14px;
+      font-size:1rem;
+      outline:none;
+      transition:0.3s;
+      background:#f9fcf9;
+    }
+
+    .auth-box input:focus{
+      border-color:#18c654;
+      background:white;
+    }
+
+    .auth-box .auth-btn{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:14px;
+      background:linear-gradient(135deg,#18c654,#0ea44b);
+      color:white;
+      font-size:1.05rem;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+      margin-top:8px;
+    }
+
+    .auth-box .auth-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 25px rgba(24,198,84,0.3);
+    }
+
+    .auth-box .switch-text{
+      text-align:center;
+      margin-top:20px;
+      color:#6b8f7a;
+      font-size:0.95rem;
+    }
+
+    .auth-box .switch-text a{
+      color:#18c654;
+      font-weight:bold;
+      cursor:pointer;
+      text-decoration:none;
+    }
+
+    .auth-box .close-btn{
+      position:absolute;
+      top:18px;
+      right:22px;
+      background:none;
+      border:none;
+      font-size:1.5rem;
+      color:#999;
+      cursor:pointer;
+    }
+
+    .auth-box{
+      position:relative;
+    }
+
+    .auth-box .error-msg{
+      color:#e53935;
+      font-size:0.85rem;
+      margin-top:8px;
+      display:none;
+    }
+
+    .auth-box .success-msg{
+      color:#08af42;
+      font-size:0.85rem;
+      margin-top:8px;
+      display:none;
+    }
+
+    .user-info{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .user-info span{
+      color:#0b4d1f;
+      font-weight:600;
+    }
+
+    .logout-btn{
+      padding:10px 20px;
+      border:none;
+      border-radius:12px;
+      background:#ff5252;
+      color:white;
+      font-size:0.9rem;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .logout-btn:hover{
+      background:#e53935;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1200px){
+
+      .hero-container{
+        grid-template-columns:1fr;
+      }
+
+      .top-cards{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .charts{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:900px){
+
+      nav{
+        padding:0 25px;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .hero h1{
+        font-size:3.5rem;
+      }
+
+      .dashboard-body{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        display:none;
+      }
+
+      .reviews{
+        grid-template-columns:1fr;
+      }
+
+      .testimonial h2,
+      .cta h2{
+        font-size:2.8rem;
+      }
+    }
+
+    @media(max-width:650px){
+
+      .top-cards{
+        grid-template-columns:1fr;
+      }
+
+      .hero h1{
+        font-size:2.7rem;
+      }
+
+      .section-title h2{
+        font-size:2.2rem;
+      }
+
+      .testimonial p,
+      .cta p{
+        font-size:1.1rem;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">
+      <i class="fa-solid fa-leaf"></i>
+     KrishiSetu
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="Conteact.html">Contact</a></li>
+      <li><a href="Testimonials.html">Testimonials</a></li>
+      <li><a href="Community.html">Community</a></li>
+    </ul>
+
+    <button class="nav-btn" id="authTrigger" onclick="openAuth()">Start Free</button>
+    <div class="user-info" id="userInfo" style="display:none;">
+      <span id="userName"></span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+  </nav>
+
+  <!-- AUTH MODAL -->
+
+  <div class="auth-overlay" id="authOverlay">
+
+    <div class="auth-box">
+
+      <button class="close-btn" onclick="closeAuth()">&times;</button>
+
+      <!-- LOGIN FORM -->
+      <div id="loginForm">
+        <h2>Welcome Back 🌱</h2>
+        <p class="subtitle">Login to your FarmPortal account</p>
+
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="you@example.com">
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter password">
+        </div>
+
+        <div class="error-msg" id="loginError"></div>
+        <div class="success-msg" id="loginSuccess"></div>
+
+        <button class="auth-btn" onclick="handleLogin()">Login</button>
+
+        <div class="switch-text">
+          Don't have an account? <a onclick="showSignup()">Sign Up</a>
+        </div>
+      </div>
+
+      <!-- SIGNUP FORM -->
+      <div id="signupForm" style="display:none;">
+        <h2>Create Account 🚀</h2>
+        <p class="subtitle">Join FarmPortal and grow smarter</p>
+
+        <div class="input-group">
+          <label>Full Name</label>
+          <input type="text" id="signupName" placeholder="Your name">
+        </div>
+
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" id="signupEmail" placeholder="you@example.com">
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="signupPassword" placeholder="Min 6 characters">
+        </div>
+
+        <div class="error-msg" id="signupError"></div>
+        <div class="success-msg" id="signupSuccess"></div>
+
+        <button class="auth-btn" onclick="handleSignup()">Sign Up</button>
+
+        <div class="switch-text">
+          Already have an account? <a onclick="showLogin()">Login</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-container">
+
+      <div class="hero-text">
+
+        <h1>
+          Grow Smarter With
+          <span>AI Farming</span>
+        </h1>
+
+        <p>
+          Monitor crops, manage livestock, predict risks and improve
+          yields with an intelligent all-in-one agriculture platform.
+        </p>
+
+        <div class="hero-buttons">
+
+          <button class="primary-btn">
+            <i class="fa-solid fa-chart-line"></i>
+            Explore Dashboard
+          </button>
+
+          <button class="secondary-btn">
+            <i class="fa-solid fa-play"></i>
+            Watch Demo
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- DASHBOARD -->
+
+      <div class="dashboard-preview">
+
+        <div class="dashboard-topbar">
+
+          <div class="dots">
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+          </div>
+
+          <div class="top-url">
+            farm-portal.app / dashboard
+          </div>
+
+        </div>
+
+        <div class="dashboard-body">
+
+          <!-- SIDEBAR -->
+
+          <div class="sidebar">
+
+            <ul class="menu">
+
+              <li class="active">
+                <i class="fa-solid fa-table-columns"></i>
+                Dashboard
+              </li>
+
+              <li>
+                <i class="fa-solid fa-seedling"></i>
+                Crops
+              </li>
+
+              <li>
+                <i class="fa-solid fa-cow"></i>
+                Livestock
+              </li>
+
+              <li>
+                <i class="fa-solid fa-cloud"></i>
+                Weather
+              </li>
+
+              <li>
+                <i class="fa-solid fa-robot"></i>
+                AI Chat
+              </li>
+
+              <li>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Risks
+              </li>
+
+              <li>
+                <i class="fa-regular fa-user"></i>
+                Profile
+              </li>
+
+            </ul>
+
+          </div>
+
+          <!-- CONTENT -->
+
+          <div class="content">
+
+            <div class="top-cards">
+
+              <div class="mini-card">
+                <h4>Soil Moisture</h4>
+                <div class="big green-text">74%</div>
+                <div class="small">↑ Optimal</div>
+              </div>
+
+              <div class="mini-card">
+                <h4>Temperature</h4>
+                <div class="big orange-text">28°C</div>
+                <div class="small">↑ +2° today</div>
+              </div>
+
+              <div class="mini-card">
+                <h4>Humidity</h4>
+                <div class="big blue-text">62%</div>
+                <div class="small">Stable</div>
+              </div>
+
+              <div class="mini-card">
+                <h4>Crop Health</h4>
+                <div class="big green-text">Good</div>
+                <div class="small">No alerts</div>
+              </div>
+
+            </div>
+
+            <div class="charts">
+
+              <div class="chart-box">
+
+                <div class="chart-title">
+                  <i class="fa-solid fa-chart-column"></i>
+                  Water Usage (weekly)
+                </div>
+
+                <div class="bar-row">
+                  <span>Mon</span>
+                  <div class="bar"><div class="fill fill1"></div></div>
+                </div>
+
+                <div class="bar-row">
+                  <span>Tue</span>
+                  <div class="bar"><div class="fill fill2"></div></div>
+                </div>
+
+                <div class="bar-row">
+                  <span>Wed</span>
+                  <div class="bar"><div class="fill fill3"></div></div>
+                </div>
+
+                <div class="bar-row">
+                  <span>Thu</span>
+                  <div class="bar"><div class="fill fill4"></div></div>
+                </div>
+
+                <div class="bar-row">
+                  <span>Fri</span>
+                  <div class="bar"><div class="fill fill5"></div></div>
+                </div>
+
+              </div>
+
+              <div class="chart-box">
+
+                <div class="chart-title">
+                  <i class="fa-solid fa-arrow-trend-up"></i>
+                  Crop Growth (7 days)
+                </div>
+
+                <div class="growth-bars">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section class="features">
+
+    <div class="section-title">
+      <h2>Smart Farming Features</h2>
+      <p>
+        Everything farmers need in one intelligent platform.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+
+        <h3>AI Assistant</h3>
+
+        <p>
+          Ask farming questions and get instant expert guidance powered
+          by artificial intelligence.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          <i class="fa-solid fa-cloud-sun-rain"></i>
+        </div>
+
+        <h3>Weather Intelligence</h3>
+
+        <p>
+          Real-time weather updates and climate insights help protect
+          crops and improve planning.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          <i class="fa-solid fa-seedling"></i>
+        </div>
+
+        <h3>Soil Analytics</h3>
+
+        <p>
+          Deep soil insights with fertilizer recommendations for
+          healthier crops and better yield.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- TESTIMONIAL -->
+
+  <section class="testimonial">
+
+    <h5>TRUSTED BY FARMERS</h5>
+
+    <h2>Real results, real farms</h2>
+
+    <p>
+      Thousands of farmers across the world use FarmPortal to grow
+      smarter every season.
+    </p>
+
+    <div class="reviews">
+
+      <div class="review-card">
+
+        <div class="stars">
+          ★★★★★
+        </div>
+
+        <p>
+          “Since switching to FarmPortal, our wheat yield has improved
+          by 40%. The AI recommendations are spot on.”
+        </p>
+
+      </div>
+
+      <div class="review-card">
+
+        <div class="stars">
+          ★★★★★
+        </div>
+
+        <p>
+          “The livestock tracking and vaccination reminders alone are
+          worth it. Never missed a dose since we started.”
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <h2>Ready to grow smarter?</h2>
+
+    <p>
+      Join 12,000+ farmers using AI-powered tools to boost yields,
+      cut costs, and farm with confidence.
+    </p>
+
+    <button>
+      Start Free Trial — No Credit Card
+    </button>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <h2>
+      <i class="fa-solid fa-leaf"></i>
+      FarmPortal
+    </h2>
+
+    <p>
+      © 2026 FarmPortal. All rights reserved.
+    </p>
+
+  </footer>
+
+  <script>
+
+    const API = "http://localhost:5000/api";
+
+    // Check if user is logged in on page load
+    window.addEventListener("DOMContentLoaded", () => {
+      const token = localStorage.getItem("token");
+      const userName = localStorage.getItem("userName");
+      if (token && userName) {
+        document.getElementById("authTrigger").style.display = "none";
+        document.getElementById("userInfo").style.display = "flex";
+        document.getElementById("userName").textContent = "👋 " + userName;
+      }
+    });
+
+    // Modal controls
+    function openAuth() {
+      document.getElementById("authOverlay").classList.add("active");
+      showLogin();
+    }
+
+    function closeAuth() {
+      document.getElementById("authOverlay").classList.remove("active");
+      clearMessages();
+    }
+
+    function showLogin() {
+      document.getElementById("loginForm").style.display = "block";
+      document.getElementById("signupForm").style.display = "none";
+      clearMessages();
+    }
+
+    function showSignup() {
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("signupForm").style.display = "block";
+      clearMessages();
+    }
+
+    function clearMessages() {
+      document.querySelectorAll(".error-msg, .success-msg").forEach(el => {
+        el.style.display = "none";
+        el.textContent = "";
+      });
+    }
+
+    function showError(id, msg) {
+      const el = document.getElementById(id);
+      el.textContent = msg;
+      el.style.display = "block";
+    }
+
+    function showSuccess(id, msg) {
+      const el = document.getElementById(id);
+      el.textContent = msg;
+      el.style.display = "block";
+    }
+
+    // Close modal on overlay click
+    document.getElementById("authOverlay").addEventListener("click", (e) => {
+      if (e.target.id === "authOverlay") closeAuth();
+    });
+
+    // Handle Signup
+    async function handleSignup() {
+      clearMessages();
+      const name = document.getElementById("signupName").value.trim();
+      const email = document.getElementById("signupEmail").value.trim();
+      const password = document.getElementById("signupPassword").value;
+
+      if (!name || !email || !password) {
+        return showError("signupError", "Please fill all fields");
+      }
+      if (password.length < 6) {
+        return showError("signupError", "Password must be at least 6 characters");
+      }
+
+      try {
+        const res = await fetch(API + "/auth/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          return showError("signupError", data.msg || "Signup failed");
+        }
+
+        // Save token and user info
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userName", data.user.name);
+
+        showSuccess("signupSuccess", "Account created! Redirecting...");
+
+        setTimeout(() => {
+          window.location.href = "Dashboard.html";
+        }, 1000);
+
+      } catch (err) {
+        showError("signupError", "Server not reachable. Make sure backend is running.");
+      }
+    }
+
+    // Handle Login
+    async function handleLogin() {
+      clearMessages();
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value;
+
+      if (!email || !password) {
+        return showError("loginError", "Please fill all fields");
+      }
+
+      try {
+        const res = await fetch(API + "/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          return showError("loginError", data.msg || "Login failed");
+        }
+
+        // Save token and user info
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userName", data.user.name);
+
+        showSuccess("loginSuccess", "Login successful! Redirecting...");
+
+        setTimeout(() => {
+          window.location.href = "Dashboard.html";
+        }, 1000);
+
+      } catch (err) {
+        showError("loginError", "Server not reachable. Make sure backend is running.");
+      }
+    }
+
+    // Logout
+    function logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userName");
+      document.getElementById("authTrigger").style.display = "block";
+      document.getElementById("userInfo").style.display = "none";
+    }
+
+    // Make "Explore Dashboard" go to dashboard
+    document.querySelector(".primary-btn").addEventListener("click", () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        window.location.href = "Dashboard.html";
+      } else {
+        openAuth();
+      }
+    });
+
+    // Make CTA button open auth
+    document.querySelector(".cta button").addEventListener("click", () => {
+      openAuth();
+    });
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farm AI Assistant</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:#eef7f0;
+}
+
+/* CHAT CONTAINER */
+
+.chat-container{
+  max-width:500px;
+  margin:50px auto;
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* HEADER */
+
+.chat-header{
+  background:#18c654;
+  color:white;
+  padding:15px;
+  font-weight:bold;
+}
+
+/* MESSAGES */
+
+.chat-box{
+  height:400px;
+  overflow-y:auto;
+  padding:15px;
+}
+
+.msg{
+  margin:10px 0;
+  padding:12px 15px;
+  border-radius:15px;
+  max-width:75%;
+}
+
+.user{
+  background:#18c654;
+  color:white;
+  margin-left:auto;
+}
+
+.bot{
+  background:#f0f0f0;
+}
+
+/* INPUT */
+
+.chat-input{
+  display:flex;
+  border-top:1px solid #ddd;
+}
+
+.chat-input input{
+  flex:1;
+  padding:15px;
+  border:none;
+  outline:none;
+}
+
+.chat-input button{
+  padding:15px;
+  border:none;
+  background:#18c654;
+  color:white;
+  cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+  <div class="chat-header">
+    🤖 Farm AI Assistant
+  </div>
+
+  <div class="chat-box" id="chatBox">
+    <div class="msg bot">Hello! Ask me about crops, weather, or farming tips 🌱</div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type your question...">
+    <button onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button>
+  </div>
+
+</div>
+
+<script>
+
+function sendMessage(){
+  let input = document.getElementById("userInput");
+  let text = input.value.trim();
+  if(text === "") return;
+
+  addMessage(text, "user");
+  input.value = "";
+
+  setTimeout(()=>{
+    let reply = getBotReply(text.toLowerCase());
+    addMessage(reply, "bot");
+  }, 700);
+}
+
+function addMessage(text, type){
+  let chatBox = document.getElementById("chatBox");
+  let div = document.createElement("div");
+  div.className = "msg " + type;
+  div.innerText = text;
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getBotReply(msg){
+
+  if(msg.includes("weather")){
+    return "Weather is important 🌦️. Check rainfall and temperature before irrigation.";
+  }
+
+  if(msg.includes("wheat")){
+    return "For wheat 🌾: Use well-drained soil and moderate irrigation.";
+  }
+
+  if(msg.includes("rice")){
+    return "Rice needs lots of water 💧 and warm climate.";
+  }
+
+  if(msg.includes("fertilizer")){
+    return "Use nitrogen-rich fertilizer for better growth 🌱.";
+  }
+
+  if(msg.includes("pest")){
+    return "Use organic pesticides or neem oil to control pests 🐛.";
+  }
+
+  return "I'm still learning 🤖. Try asking about crops, weather, or soil.";
+}
+
+</script>
+
+</body>
+</html>

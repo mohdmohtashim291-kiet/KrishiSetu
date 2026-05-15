@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FarmPortal Testimonials</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#0f1f14,#153d25);
+  color:white;
+  overflow-x:hidden;
+}
+
+/* HEADER */
+
+.header{
+  text-align:center;
+  padding:100px 20px 50px;
+}
+
+.header h1{
+  font-size:3.2rem;
+  margin-bottom:10px;
+}
+
+.header p{
+  color:#b7d9c4;
+  font-size:1.2rem;
+}
+
+/* SLIDER */
+
+.slider{
+  max-width:1000px;
+  margin:auto;
+  overflow:hidden;
+  position:relative;
+}
+
+.slide-track{
+  display:flex;
+  transition:0.6s;
+}
+
+/* CARD */
+
+.card{
+  min-width:100%;
+  padding:40px;
+}
+
+.inner{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(12px);
+  border-radius:25px;
+  padding:40px;
+  text-align:center;
+  transition:0.3s;
+}
+
+.inner:hover{
+  transform:scale(1.03);
+  box-shadow:0 20px 60px rgba(0,0,0,0.2);
+}
+
+.stars{
+  color:#1dd75f;
+  margin-bottom:20px;
+}
+
+.inner p{
+  font-size:1.3rem;
+  line-height:1.7;
+  margin-bottom:25px;
+}
+
+.user{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+}
+
+.user img{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.user h4{
+  margin-bottom:5px;
+}
+
+.user span{
+  font-size:0.9rem;
+  color:#b7d9c4;
+}
+
+/* DOTS */
+
+.dots{
+  text-align:center;
+  margin-top:30px;
+}
+
+.dots span{
+  height:12px;
+  width:12px;
+  margin:5px;
+  background:#aaa;
+  display:inline-block;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+.dots .active{
+  background:#18c654;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+  .header h1{
+    font-size:2.2rem;
+  }
+
+  .inner p{
+    font-size:1rem;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>What Farmers Say 🌾</h1>
+  <p>Real experiences from real users</p>
+</div>
+
+<div class="slider">
+  <div class="slide-track" id="track">
+
+    <!-- SLIDE 1 -->
+    <div class="card">
+      <div class="inner">
+        <div class="stars">★★★★★</div>
+        <p>“FarmPortal helped increase my wheat production by 40%. The AI suggestions are amazing!”</p>
+        <div class="user">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg">
+          <div>
+            <h4>Ramesh Kumar</h4>
+            <span>Farmer, UP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="card">
+      <div class="inner">
+        <div class="stars">★★★★★</div>
+        <p>“Weather alerts saved my crops during heavy rainfall. Highly recommended platform!”</p>
+        <div class="user">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg">
+          <div>
+            <h4>Sunita Devi</h4>
+            <span>Farmer, Bihar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="card">
+      <div class="inner">
+        <div class="stars">★★★★★</div>
+        <p>“Livestock tracking and reminders made farm management so easy.”</p>
+        <div class="user">
+          <img src="https://randomuser.me/api/portraits/men/76.jpg">
+          <div>
+            <h4>Arjun Singh</h4>
+            <span>Farmer, Punjab</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="dots" id="dots"></div>
+
+<script>
+
+let index = 0;
+const track = document.getElementById("track");
+const slides = document.querySelectorAll(".card");
+const dotsContainer = document.getElementById("dots");
+
+// create dots
+slides.forEach((_, i) => {
+  let dot = document.createElement("span");
+  dot.onclick = () => moveSlide(i);
+  dotsContainer.appendChild(dot);
+});
+
+function updateDots(){
+  let dots = document.querySelectorAll(".dots span");
+  dots.forEach(d => d.classList.remove("active"));
+  dots[index].classList.add("active");
+}
+
+function moveSlide(i){
+  index = i;
+  track.style.transform = `translateX(-${i * 100}%)`;
+  updateDots();
+}
+
+// auto slide
+setInterval(()=>{
+  index = (index + 1) % slides.length;
+  moveSlide(index);
+}, 4000);
+
+updateDots();
+
+</script>
+
+</body>
+</html>
